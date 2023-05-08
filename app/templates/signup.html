@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container w-50">
+    <h1>Sign up</h1>
+    
+    <form method="post" class="row">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="{{ form.username.html_name }}" class="form-label">{{ form.username.label }}</label>
+
+      {% if form.username.errors %}
+        <input type="text" class="form-control is-invalid" id="{{ form.username.html_name }}" name="{{ form.username.html_name }}" aria-describedby="validationUsername" required>
+        <div id="validationUsername" class="invalid-feedback">
+          {{ form.username.errors }}
+        </div>
+      {% else %}
+        <input type="text" class="form-control" id="{{ form.username.html_name }}" name="{{ form.username.html_name }}" required>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.password1.html_name }}" class="form-label">{{ form.password1.label }}</label>
+
+      {% if form.password1.errors %}
+        <input type="password" class="form-control is-invalid" id="{{ form.password1.html_name }}" name="{{ form.password1.html_name }}" area-describedby="validationPassword1" required>
+        <div id="validationPassword1" class="invalid-feedback">
+          {{ form.password1.errors }}
+        </div>
+      {% else %}
+        <input type="password" class="form-control" id="{{ form.password1.html_name }}" name="{{ form.password1.html_name }}" required>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.password2.html_name }}" class="form-label">{{ form.password2.label }}</label>
+
+      {% if form.password2.errors %}
+        <input type="password" class="form-control is-invalid" id="{{ form.password2.html_name }}" name="{{ form.password2.html_name }}" area-describedby="validationPassword2" required>
+        <div id="validationPassword2" class="invalid-feedback">
+          {{ form.password2.errors }}
+        </div>
+      {% else %}
+        <input type="password" class="form-control" id="{{ form.password2.html_name }}" name="{{ form.password2.html_name }}" required>
+      {% endif %}
+
+    </div>
+
+    <div class="col-12 d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary w-50">Sign up</button>
+    </div>
+
+    <input type="hidden" name="next" value="{{ next }}">
+    </form>
+</div>
+{% endblock %}
